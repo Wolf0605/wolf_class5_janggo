@@ -5,6 +5,11 @@
     <div style = 'margin: 2rem; text-align: center'>{# overflow: hidden #}
         <h1>METHOD</h1>
 
+        <form action="/account/hello_world/" method="post"> {# post 방식으로 한다고 명확히 제시 #}
+            {% csrf_token %} {# post 를 사용할떈 무조건 이거 넣어야 정상작동함  해킹방지하는거임 #}
+            <input type="submit" class="btn btn-dark px-3" type="submit" >
+        </form>
+
         <h3>{{ text }}</h3>
     </div>
 
