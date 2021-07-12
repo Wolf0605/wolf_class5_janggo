@@ -3,15 +3,28 @@
 {%  block content %}
 
     <div style = 'margin: 2rem; text-align: center'>{# overflow: hidden #}
-        <h1>METHOD</h1>
+        <h1 style="font-family: 'Pacifico', cursive"
+            class="m-5"
+            hello world list
+        </h1>
 
         <form action="/account/hello_world/" method="post"> {# post 방식으로 한다고 명확히 제시 #}
             {% csrf_token %} {# post 를 사용할떈 무조건 이거 넣어야 정상작동함  해킹방지하는거임 #}
-            <input type="text" name="hello_world_input">
-            <input type="submit" class="btn btn-dark rounded-pill px-5" type="submit" >
+            <div class="input-group mb-3 w-50 m-auto">
+                <input type="text" class="form-control"
+                    name="hello_world_input">
+                <button class="btn btn-dark" type="submit">
+                    Button
+                </button>
+            </div>
+{#            <input type="text" >#}
+{#            <input type="submit" class="btn btn-dark rounded-pill px-5" type="submit" >#}
         </form>
-        {%  if hello_world_output %}
-        <h3>{{ hello_world_output }}</h3>
+        {%  if hello_world_list %}
+
+            {% for hello_world in hello_world_list %}
+                <h3>{{ hello_world.text }}</h3>
+            {% endfor %}
         {% endif %}
     </div>
 
