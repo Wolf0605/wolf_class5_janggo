@@ -12,3 +12,9 @@
     margin-bottom: 2rem;
     font-family: 'Otomanopee One', cursive;
 }
+
+.mw-500 {
+    max-width: 500px;
+    padding: 1rem 1.5rem
+
+}
