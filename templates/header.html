@@ -7,7 +7,7 @@
         <span>nav1</span>
         <span>nav2</span>
 
-        {% if not user.is_authenticated %}
+        {% if not user.is_authenticated %} {# if not login #}
         <span>
             <a href="{% url 'accountapp:login' %}">
                 Login
