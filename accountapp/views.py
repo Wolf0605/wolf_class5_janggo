@@ -1,26 +1,25 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
-
+@login_required(login_url=reverse_lazy('accountapp:login'))      # 장고 기본 기능,, accounts/login이 자동 경로로 저장
 def hello_world(request):
     if request.user.is_authenticated:
         if request.method == "POST":
-
             temp = request.POST.get('hello_world_input')
-
             new_hello_world = HelloWorld()
             new_hello_world.text = temp
             new_hello_world.save()
-
             return HttpResponseRedirect(reverse('accountapp:hello_world')) # reverse 로 주소를 역 추적.
         else:
             hello_world_list = HelloWorld.objects.all()
@@ -29,17 +28,8 @@ def hello_world(request):
     else:
         return HttpResponseRedirect(reverse('accountapp:login'))
 
-class AccountCreateView(CreateView):
-    model = User
-    form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world') # class에서 rever.lazy()
-    template_name = 'accountapp/create.html'
-
-class AccountDetailView(DetailView):
-    model = User
-    context_object_name = 'target_user'
-    template_name = 'accountapp/detail.html'
-
+@method_decorator(login_required(login_url=reverse_lazy('accountapp:login')), 'get')
+@method_decorator(login_required(login_url=reverse_lazy('accountapp:login')), 'post')
 class AccountUpdateView(UpdateView):
     model = User #어떤 객체를 수정 할 것 인가
     form_class = AccountCreationForm
@@ -47,20 +37,22 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html' # 어떤 페이지를 가져와서 시각화 할 것 인가
 
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return super().get(request, *args, **kwargs)
-        else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world') # class에서 rever.lazy()
+    template_name = 'accountapp/create.html'
 
-    def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return super().post(request, *args, **kwargs)
-        else:
-            return HttpResponseRedirect(reverse('accountapp:login'))
 
+@method_decorator(login_required(login_url=reverse_lazy('accountapp:login')), 'get')
+@method_decorator(login_required(login_url=reverse_lazy('accountapp:login')), 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/delete.html'
+
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'
