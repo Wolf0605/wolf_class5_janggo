@@ -57,3 +57,7 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
