@@ -34,7 +34,6 @@ class AccountUpdateView(UpdateView):
     model = User #어떤 객체를 수정 할 것 인가
     form_class = AccountCreationForm
     context_object_name = 'target_user'
-    success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html' # 어떤 페이지를 가져와서 시각화 할 것 인가
 
 class AccountCreateView(CreateView):
@@ -57,7 +56,5 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
-
-    def form_valid(self,form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    # reverse 는 함수형에서 가져와서 쓰는?
+    # 방금한게 succes_url = reverse_lazy(~~~) 를 오버라이딩으로 바꿔준게 방금내용이 맞나요??
