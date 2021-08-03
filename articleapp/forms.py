@@ -1,5 +1,5 @@
 from articleapp.models import Article
-\from django.forms import ModelForm
+from django.forms import ModelForm
 
 
 class ArticleCreationForm(ModelForm):
