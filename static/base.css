@@ -43,3 +43,15 @@
     color: dimgrey;
 }
 /*x , y , 그림자 크기픽셀 그림자색*/
+
+.article_image{
+    border-radius: 2rem;
+    width: 70%;
+    box-shadow: 0 0 .5rem;
+}
+
+.article_content{
+    font-size: 1.1rem;
+    text-align: left;
+    margin: 2rem;
+}
