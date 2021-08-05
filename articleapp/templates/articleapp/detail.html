@@ -17,6 +17,7 @@
             <div CLASS="article_content text-center">
                 {{ target_article.content }}
             </div>
+            {% if target_article.writer == user %}
             <div>
                 <a href="{% url 'articleapp:update' pk=target_article.pk %}"
                    class="btn btn-success rounded-pill px5">
@@ -28,6 +29,7 @@
                     Delete
                 </a>
             </div>
+            {% endif %}
         </div>
     </div>
 
