@@ -21,21 +21,12 @@
 
     </style>
 
-    <div class="container my-4">
-        {% for article in article_list %}
-
-            <div>
-                <a href="{% url 'articleapp:detail' pk=article.pk %}">
-                    <img src="{{ article.image.url }}"
-                         alt="">
-                </a>
-            <span>{{ article.title }}</span>
-            </div>
-
-        {% endfor %}
-    </div>
 
     <script src="{%  static 'js/magicgrid.js' %}"></script>
+
+    {% for article in article_list %}
+    {% include 'snippets/pagination.html' %}
+    {% endfor %}
 
     <div class="text-center my-5">
         <a href="{% url 'articleapp:create' %}"
