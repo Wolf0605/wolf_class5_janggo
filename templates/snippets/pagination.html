@@ -1,11 +1,4 @@
-    <div>
-            <a href="{% url 'articleapp:detail' pk=article.pk %}"
-            class="btn btn-secondary rounded-pill">
-                <img src="{{ article.image.url }}"
-                     alt="">
-            </a>
-        <span>{{ article.title }}</span>
-    </div>
+
     <div class="text-center container my-4">
         {%  if page_obj.has_previous %}
             <a href="?page={{ page_obj.previous_page_number }}"
