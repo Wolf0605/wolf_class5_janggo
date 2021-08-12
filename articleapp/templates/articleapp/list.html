@@ -4,8 +4,13 @@
 {% block content %}
 
     <style>
+        .container{
+            padding: 0;
+            margin:0 auto;
+        }
         .container div {
-            width: 280px;
+            width: 45%;
+            max-width: 250px;  {# 모바일과 데스크탑 모두를 위해 width 와 max-width를 설정 #}
             box-shadow: 0 0 .5rem grey;
             display: flex;
             justify-content: center;
