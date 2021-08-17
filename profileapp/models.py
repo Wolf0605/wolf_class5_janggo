@@ -12,5 +12,5 @@ class Profile(models.Model): # models 안에있는 Model
     image = models.ImageField(upload_to='profile/', null = True) # 경로 관련 비어있어도 괜찮다 null True
     nickname = models.CharField(max_length=30, unique=True, null=True) # 문자필드
     message = models.CharField(max_length=200, null=True)
-    # make migrations # 변화를 측정하는 db를 만든다
+    # makemigrations # 변화를 측정하는 db를 만든다
     #     #db에 연결해줌ㅈ
