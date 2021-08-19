@@ -5,6 +5,9 @@ from django.db import models
 class Project(models.Model):
     name = models.CharField(max_length=20, null=False)
     description = models.CharField(max_length=200, null=True) #DB에서 null처리가 된다
-    image = models.ImageField(upload_to='project/')
+    image = models.ImageField(upload_to='project/', null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}'

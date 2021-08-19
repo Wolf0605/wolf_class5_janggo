@@ -4,8 +4,16 @@
     </div>
 
     <div class="Pragmatic_header_btn">
-        <span>nav1</span>
-        <span>nav2</span>
+        <span>
+            <a href="{% url 'articleapp:List' %}">
+                Articles
+            </a>
+        </span>
+        <span>
+            <a href="{% url 'projectapp:list' %}">
+                Projects
+            </a>
+        </span>
 
         {% if not user.is_authenticated %} {# if not login #}
         <span>

@@ -8,10 +8,13 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
+from articleapp.models import Article
+
 
 @login_required(login_url=reverse_lazy('accountapp:login'))     # 장고 기본 기능,, accounts/login이 자동 경로로 저장
 def hello_world(request):
@@ -52,9 +55,16 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(writer=self.object)
+        return super().get_context_data(object_list=article_list, **kwargs)
+
     # reverse 는 함수형에서 가져와서 쓰는?
     # 방금한게 succes_url = reverse_lazy(~~~) 를 오버라이딩으로 바꿔준게 방금내용이 맞나요??
