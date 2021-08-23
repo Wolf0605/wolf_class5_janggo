@@ -12,10 +12,11 @@ from subscribeapp.models import Subscription
 @method_decorator(login_required, 'get')
 class SubscriptionView(RedirectView):
 
-    def get(selfself, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         user =request.user
         project = Project.objects.get(pk=kwargs['project_pk'])
         subscription = Subscription.objects.filter(user=user,
+                                                   project=project)
 
         if subscription.exists():
             subscription.delete()
