@@ -31,14 +31,14 @@ class ArticleCreateView(CreateView):
 class ArticleDetailView(DetailView, FormMixin):
     model = Article
     form_class = CommentCreationForm
-    context_object_name = 'target_article'
-    template_name = 'articleapp/detail.html'
+    context_object_name='target_article'
+    template_name ='articleapp/detail.html'
 
 class ArticleUpdateView(UpdateView):
     model = Article
     form_class = ArticleCreationForm
-    context_object_name = 'target_article'
-    template_name =  'articleapp/update.html'
+    context_object_name='target_article'
+    template_name ='articleapp/update.html'
 
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
@@ -46,10 +46,10 @@ class ArticleDeleteView(DeleteView):
     model = Article
     context_object_name = 'target_article'
     success_url = reverse_lazy('articleapp:List')
-    template_name = 'articleapp/delete.html'
+    template_name='articleapp/delete.html'
 
 class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list' # 게시글의 리스트
-    template_name = 'articleapp/list.html'
+    template_name='articleapp/list.html'
     paginate_by = 4  #? 한페이지에 나올 수 있는 글의 수가 총20개
