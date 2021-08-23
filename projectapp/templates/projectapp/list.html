@@ -27,7 +27,9 @@
     </style>
 
     <div class="container my-4">
+
         {% for project in project_list %}
+
             <div>
                 <a href="{% url 'projectapp:detail' pk=project.pk %}">
                     <img src="{{ project.image.url }}"
