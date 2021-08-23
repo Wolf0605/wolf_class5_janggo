@@ -14,6 +14,11 @@
                 Projects
             </a>
         </span>
+        <span>
+            <a href="{% url 'subscribeapp:subscribe' %}">
+                Subscribe
+            </a>
+        </span>
 
         {% if not user.is_authenticated %} {# if not login #}
         <span>
