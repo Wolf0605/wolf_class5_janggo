@@ -1,14 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import RedirectView
 
 from articleapp.models import Article
 from likeapp.tests import LikeRecord
 
-
+@method_decorator(login_required(login_url=reverse('accountapp:login')), 'get')
 class LikeArticleView(RedirectView):
     def get(self, request, *args, **kwargs):
         user = request.user
