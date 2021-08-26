@@ -6,9 +6,21 @@
 <body style="font-family: 'NanumSquareR">
 {%  include 'header.html' %}
 
+<hr>
+
+{% for message in messages %}   {# messages 라는건 쟝고에 통합되어 있는 기능 #}
+    <div class="text-center">
+        <div class="btn btn-success rounded-pill px-5"> {# message가 눈에 뛰게 디자인 #}
+            {{ message }}
+        </div>
+    </div>
+
+{% endfor %}
+
 {%  block content %}
 {%  endblock %}
 
+<hr>
 
 {%  include 'footer.html' %}
 </body>
