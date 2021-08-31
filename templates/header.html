@@ -1,21 +1,25 @@
 <div style = 'text-align: center'>{# 위 아래 여백만 2rem 좌우는 0 #}
     <div class="Pragmatic_header_logo">
-        <h1 >Pragmatic</h1>
+        <h1 >
+            <a href="{% url 'home' %}">
+                Pragmatic
+            </a>
+        </h1>
     </div>
 
     <div class="Pragmatic_header_btn">
-        <span>
+        <span class="mx-2">
             <a href="{% url 'articleapp:List' %}">
                 Articles
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'projectapp:list' %}">
                 Projects
             </a>
         </span>
         {% if user.is_authenticaed %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'subscribeapp:list  ' %}">
                 Subscribe
             </a>
@@ -34,12 +38,12 @@
             </a>
         </span>
         {% else %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:detail' pk=user.pk %}">
                 My page
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'accountapp:logout' %}">
                 Logout
             </a>
