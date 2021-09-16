@@ -37,6 +37,6 @@ DATABASES = {
         'USER': 'django',
         'PASSWORD': 'password1234',
         'HOST': 'mariadb',
-        'PORT': '5432',
+        'PORT': '3306', # 여기가 문제였네요 상상도 못한 정체 포트 3306입니다 5432 아니구요 ㅠ
     }
 }
