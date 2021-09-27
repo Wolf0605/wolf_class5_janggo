@@ -31,6 +31,8 @@ services:
     volumes:
       - wolf_static:/home/wolf_class5_janggo/staticfiles/
       - wolf_media:/home/wolf_class5_janggo/media/
+    secrets:
+      - DJANGO_SECRET_KEY
 
 
 networks:
@@ -41,3 +43,6 @@ volumes:
   wolf_media:
   wolf_mariadb:
 
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true
