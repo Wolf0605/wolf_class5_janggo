@@ -40,6 +40,10 @@ class ArticleUpdateView(UpdateView):
     context_object_name='target_article'
     template_name ='articleapp/update.html'
 
+
+    def get_success_url(self):
+        return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
+
 @method_decorator(article_ownership_required, 'get')
 @method_decorator(article_ownership_required, 'post')
 class ArticleDeleteView(DeleteView):
@@ -52,4 +56,4 @@ class ArticleListView(ListView):
     model = Article
     context_object_name = 'article_list' # 게시글의 리스트
     template_name='articleapp/list.html'
-    paginate_by = 4  #? 한페이지에 나올 수 있는 글의 수가 총20개
+    paginate_by = 20  #? 한페이지에 나올 수 있는 글의 수가 총20개

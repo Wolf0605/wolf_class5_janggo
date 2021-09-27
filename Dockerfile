@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo 'wolfowlfowlf'
+RUN echo 'asdfasdvdvf'
 # home 이라는 경로에 모든 git 파일 붙혀넣음
 RUN git clone https://github.com/Wolf0605/wolf_class5_janggo.git
 
@@ -16,10 +16,8 @@ RUN pip install -r requirements.txt
 
 RUN pip install gunicorn
 
-RUN python manage.py migrate
-
-RUN python manage.py collectstatic
+RUN pip install mysqlclient
 
 EXPOSE 8000
 
-CMD ["gunicorn", "wolfs_jango_project.wsgi", "--bind", "0.0.0.0:8000"]
+CMD ["bash", "-c", "python manage.py collectstatic --noinput --settings=wolfs_jango_project.settings.deploy && python manage.py migrate --settings=wolfs_jango_project.settings.deploy && gunicorn --env DJANGO_SETTINGS_MODULE=wolfs_jango_project.settings.deploy wolfs_jango_project.wsgi --bind 0.0.0.0:8000"]
