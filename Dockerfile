@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo 'asdfasdvdvfff'
+RUN echo 'asdfasdvd22vfff'
 # home 이라는 경로에 모든 git 파일 붙혀넣음
 RUN git clone https://github.com/Wolf0605/wolf_class5_janggo.git
 
